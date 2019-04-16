@@ -2,7 +2,8 @@
 
 # About
 
-This is a text-based application that aids businesses in managing their contact list.
+This is a text-based business contact application.
+It is very agile and a clear solution for various businesses. 
 
 # Features
 
