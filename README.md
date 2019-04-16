@@ -27,7 +27,10 @@ It is very agile and a clear solution for various businesses.
 
 ⚫️ Save contacts to a CSV file
 
-
 # Last Update:
 
 04/16/19
+
+# Code Style
+
+Formatted using [Black](https://github.com/ambv/black). Linted using [PyLint](https://www.pylint.org/).
