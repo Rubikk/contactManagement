@@ -18,6 +18,31 @@ def about():
     print("Contacts App.\nDeveloped by: Iseah Olguin\n")
 
 
+def read():
+    """Read info from csv file"""
+    # List of dictionaries
+    data = []
+
+    with open("sample.csv", 'r') as f:
+        lines = f.readlines()
+
+    for line in lines:
+        values = line.split(',')
+
+        # Creates an empty dictionary
+        row = dict()
+
+        row["Name"] = values[0]
+        row["Phone"] = values[1]
+        row["Company"] = values[2]
+        row["Email"] = values[3]
+        # List index out of range for some reason
+        # row["Note"] = values[4]
+        data.append(row)
+
+    print(row)
+
+
 def main():
     """
     Function Calls
@@ -30,6 +55,9 @@ def main():
 
         if(cmd == 'about'):
             about()
+
+        if(cmd == 'read'):
+            read()
 
         if(cmd == 'exit'):
             print('Goodbye\n')
