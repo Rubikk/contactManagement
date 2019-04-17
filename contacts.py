@@ -10,12 +10,16 @@ def welcomeMessage():
     print("There are various operations that may be performed: ")
 
     ## TODO: update this wich each function command created
-    print("about, exit.")
+    print("about, list, exit.")
 
 
 def about():
     """Simple about me"""
     print("Contacts App.\nDeveloped by: Iseah Olguin\n")
+
+
+### TODO: info command, remove command, note command, add command, load command,
+## TODO: save command, commands command: must be the same format read in: name, , , ,
 
 
 def read():
@@ -40,7 +44,32 @@ def read():
         # row["Note"] = values[4]
         data.append(row)
 
-    print(row)
+
+def list():
+    """Lists all contacts stored"""
+    # List of dictionaries
+    data = []
+
+    with open("sample.csv", "r") as f:
+        lines = f.readlines()
+
+    for line in lines:
+        values = line.split(",")
+
+        # Creates an empty dictionary
+        row = dict()
+
+        row["Name"] = values[0]
+        row["Phone"] = values[1]
+        row["Company"] = values[2]
+        row["Email"] = values[3]
+        # List index out of range for some reason
+        row["Note"] = values[4]
+        data.append(row)
+
+    # Print list of contact information
+    for row in data:
+        print(row)
 
 
 def main():
@@ -59,8 +88,12 @@ def main():
         if cmd == "read":
             read()
 
+        if cmd == "list":
+            list()
+
         if cmd == "exit":
-            print("Goodbye\n")
+            print("\nAlways update your contact list !")
+            print("Goodbye.\n")
             return -1
 
 
