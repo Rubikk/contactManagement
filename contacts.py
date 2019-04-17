@@ -23,11 +23,11 @@ def read():
     # List of dictionaries
     data = []
 
-    with open("sample.csv", 'r') as f:
+    with open("sample.csv", "r") as f:
         lines = f.readlines()
 
     for line in lines:
-        values = line.split(',')
+        values = line.split(",")
 
         # Creates an empty dictionary
         row = dict()
@@ -50,17 +50,17 @@ def main():
 
     welcomeMessage()
 
-    while(1):
-        cmd = input('Please enter a command: ')
+    while 1:
+        cmd = input("Please enter a command: ")
 
-        if(cmd == 'about'):
+        if cmd == "about":
             about()
 
-        if(cmd == 'read'):
+        if cmd == "read":
             read()
 
-        if(cmd == 'exit'):
-            print('Goodbye\n')
+        if cmd == "exit":
+            print("Goodbye\n")
             return -1
 
 
