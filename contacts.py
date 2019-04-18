@@ -71,6 +71,16 @@ def list():
     for row in data:
         print(row)
 
+def info():
+    """
+    Number of contacts
+    Number of companies
+    Number of contacts per company
+    """
+    # for i in row["Name"]:
+    #    i += 1
+    # Still need to update the number of companies & contacts per company
+
 
 def main():
     """
