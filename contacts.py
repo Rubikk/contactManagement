@@ -71,6 +71,7 @@ def list():
     for row in data:
         print(row)
 
+
 def info():
     """
     Number of contacts
