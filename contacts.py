@@ -41,7 +41,7 @@ def read():
         row["Company"] = values[2]
         row["Email"] = values[3]
         # List index out of range for some reason
-        # row["Note"] = values[4]
+        row["Note"] = values[4]
         data.append(row)
 
 
@@ -83,6 +83,14 @@ def info():
     # Still need to update the number of companies & contacts per company
 
 
+def save():
+    # Just use with as here to store the file and error check if directory etc...
+    savefile = input(
+        "Please enter the filename in which you would like to save your file."
+    )
+    # savefile.write("{}, {}, {}, {}, {}\n".format(Name, Phone, Company, Email, Note))
+
+
 def main():
     """
     Function Calls
@@ -101,6 +109,9 @@ def main():
 
         if cmd == "list":
             list()
+
+        if cmd == "save":
+            save()
 
         if cmd == "exit":
             print("\nAlways update your contact list !")
