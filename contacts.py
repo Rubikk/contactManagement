@@ -83,12 +83,28 @@ def info():
     # Still need to update the number of companies & contacts per company
 
 
+## TODO: Change this entire 'save' func. use class from dict.
 def save():
-    # Just use with as here to store the file and error check if directory etc...
-    savefile = input(
-        "Please enter the filename in which you would like to save your file."
-    )
-    # savefile.write("{}, {}, {}, {}, {}\n".format(Name, Phone, Company, Email, Note))
+    try:
+        savefile = input(
+            "Please enter the filename in which you would like to save your file."
+        )
+        with open(savefile, "w") as file:
+
+            # Create new List of contacts to save
+            contactSaved = []
+
+            for line in file:
+                # Split line into list using , as a separator
+                section = line.split(",")
+
+                contacts = section[0]
+
+                contactSaved.append(contacts)
+
+    except FileNotFoundError:
+        print('File "{}" not found.'.format(savefile))
+        print("Please enter a valid file name. ")
 
 
 def main():
