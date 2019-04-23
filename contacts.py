@@ -10,7 +10,7 @@ def welcomeMessage():
     print("There are various operations that may be performed: ")
 
     ## TODO: update this wich each function command created
-    print("about, list, exit.")
+    print("about, save, exit.")
 
 
 def about():
@@ -22,89 +22,69 @@ def about():
 ## TODO: save command, commands command: must be the same format read in: name, , , ,
 
 
-def read():
+class Contact:
+    def __init__(self, name, phone, company, email, note):
+
+        # initial name
+        self.name = name
+        self.phone = phone
+        self.company = company
+        self.email = email
+        # initial note
+        self.note = note
+
+    def editNote(self, new):
+        # Assign the value of this instance's note to whatever is passed as new
+        self.note = new
+
+
+def loadContacts(contactList):
     """Read info from csv file"""
     # List of dictionaries
     data = []
-
-    with open("sample.csv", "r") as f:
-        lines = f.readlines()
-
-    for line in lines:
-        values = line.split(",")
-
-        # Creates an empty dictionary
-        row = dict()
-
-        row["Name"] = values[0]
-        row["Phone"] = values[1]
-        row["Company"] = values[2]
-        row["Email"] = values[3]
-        # List index out of range for some reason
-        row["Note"] = values[4]
-        data.append(row)
-
-
-def list():
-    """Lists all contacts stored"""
-    # List of dictionaries
-    data = []
-
-    with open("sample.csv", "r") as f:
-        lines = f.readlines()
-
-    for line in lines:
-        values = line.split(",")
-
-        # Creates an empty dictionary
-        row = dict()
-
-        row["Name"] = values[0]
-        row["Phone"] = values[1]
-        row["Company"] = values[2]
-        row["Email"] = values[3]
-        # List index out of range for some reason
-        row["Note"] = values[4]
-        data.append(row)
-
-    # Print list of contact information
-    for row in data:
-        print(row)
-
-
-def info():
-    """
-    Number of contacts
-    Number of companies
-    Number of contacts per company
-    """
-    # for i in row["Name"]:
-    #    i += 1
-    # Still need to update the number of companies & contacts per company
-
-
-## TODO: Change this entire 'save' func. use class from dict.
-def save():
     try:
-        savefile = input(
-            "Please enter the filename in which you would like to save your file."
-        )
-        with open(savefile, "w") as file:
+        with open("sample.csv", "r") as f:
+            lines = f.readlines()
 
-            # Create new List of contacts to save
-            contactSaved = []
+        for line in lines:
+            values = line.split(",")
 
-            for line in file:
-                # Split line into list using , as a separator
-                section = line.split(",")
+            # Creates an empty dictionary
+            row = dict()
 
-                contacts = section[0]
+            name = row["Name"] = values[0]
+            phone = row["Phone"] = values[1]
+            company = row["Company"] = values[2]
+            email = row["Email"] = values[3]
+            note = row["Note"] = values[4]
+            data.append(row)
 
-                contactSaved.append(contacts)
+            # new instance of contact
+            contact = Contact(name, phone, company, email, note)
+            # store as list
+            contactList.append(contact)
 
     except FileNotFoundError:
-        print('File "{}" not found.'.format(savefile))
+        print('File "{}" not found.'.format("sample.csv"))
         print("Please enter a valid file name. ")
+
+
+def save(contactList):
+    """Saves contactList to a file in CSV format"""
+
+    print(
+        "Note: This file will be saved in comma separated format, please mark your file as a '.csv' "
+    )
+    savefile = input(
+        "Please enter the filename in which you would like to save your file: "
+    )
+    with open(savefile, "w") as file:
+        for contact in contactList:
+            file.write(contact.name + ",")
+            file.write(contact.phone + ",")
+            file.write(contact.company + ",")
+            file.write(contact.email + ",")
+            file.write(contact.note)
 
 
 def main():
@@ -113,6 +93,9 @@ def main():
     """
 
     welcomeMessage()
+    contactList = []
+    # Load a default contacts file when app starts
+    loadContacts(contactList)
 
     while 1:
         cmd = input("Please enter a command: ")
@@ -120,14 +103,11 @@ def main():
         if cmd == "about":
             about()
 
-        if cmd == "read":
-            read()
-
-        if cmd == "list":
-            list()
+        # if cmd == "list":
+        #     list()
 
         if cmd == "save":
-            save()
+            save(contactList)
 
         if cmd == "exit":
             print("\nAlways update your contact list !")
