@@ -3,7 +3,7 @@
 # About
 
 This is a text-based business contact application.
-It is very agile and a clear solution for various businesses.
+It is very agile and a clear solution for various businesses to store their contact lists.
 
 # Features
 
@@ -21,7 +21,8 @@ It is very agile and a clear solution for various businesses.
 
 ⚫️ Create a note associated with specified contact
 
-⚫️ Load a default contacts file
+⚫️ Load a default contacts file:
+    ✨ From startup: Immediately loads a 'sample.csv' file
 
 ⚫️ Load a set of commands from a file
 
@@ -29,7 +30,7 @@ It is very agile and a clear solution for various businesses.
 
 # Last Update:
 
-04/16/19
+04/23/19
 
 # Code Style
 

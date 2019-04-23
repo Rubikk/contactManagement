@@ -10,19 +10,15 @@ def welcomeMessage():
     print("There are various operations that may be performed: ")
 
     ## TODO: update this wich each function command created
-    print("about, save, exit.")
+    print("about, info, list, load, save, exit.")
 
 
 def about():
     """Simple about me"""
     print("Contacts App.\nDeveloped by: Iseah Olguin\n")
 
-
-### TODO: info command, remove command, note command, add command, load command,
-## TODO: save command, commands command: must be the same format read in: name, , , ,
-
-
 class Contact:
+    """Stores contact Information"""
     def __init__(self, name, phone, company, email, note):
 
         # initial name
@@ -33,10 +29,35 @@ class Contact:
         # initial note
         self.note = note
 
+    def listInfo(self):
+        print('Name: ', self.name)
+        print('Phone: ', self.phone)
+        print('Company: ', self.company)
+        print('Email: ', self.email)
+        print('Note: ', self.note)
+
     def editNote(self, new):
         # Assign the value of this instance's note to whatever is passed as new
         self.note = new
 
+# # TODO: need number of companies & contacts per company
+def info(contactList):
+    """
+        Information about contact list: number of contacts, companies & contacts per company
+    """
+    numberofContacts = 0
+    # numberofCompanies = 0
+    # numberofContactsperCompany = 0
+
+    for contacts in contactList:
+        numberofContacts += 1
+
+    print("The total number of contacts: " + str(numberofContacts - 1))
+
+def list(contactList):
+    """List the infromation of the entire contact list"""
+    for contact in contactList:
+        contact.listInfo()
 
 def loadContacts(contactList):
     """Read info from csv file"""
@@ -86,7 +107,6 @@ def save(contactList):
             file.write(contact.email + ",")
             file.write(contact.note)
 
-
 def main():
     """
     Function Calls
@@ -99,12 +119,16 @@ def main():
 
     while 1:
         cmd = input("Please enter a command: ")
+        print('\n')
 
         if cmd == "about":
             about()
 
-        # if cmd == "list":
-        #     list()
+        if cmd == "info":
+            info(contactList)
+
+        if cmd == "list":
+            list(contactList)
 
         if cmd == "save":
             save(contactList)
