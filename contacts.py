@@ -17,8 +17,10 @@ def about():
     """Simple about me"""
     print("Contacts App.\nDeveloped by: Iseah Olguin\n")
 
+
 class Contact:
     """Stores contact Information"""
+
     def __init__(self, name, phone, company, email, note):
 
         # initial name
@@ -30,15 +32,17 @@ class Contact:
         self.note = note
 
     def listInfo(self):
-        print('Name: ', self.name)
-        print('Phone: ', self.phone)
-        print('Company: ', self.company)
-        print('Email: ', self.email)
-        print('Note: ', self.note)
+        """Pretty prints the contact list"""
+        print("Name: ", self.name)
+        print("Phone: ", self.phone)
+        print("Company: ", self.company)
+        print("Email: ", self.email)
+        print("Note: ", self.note)
 
     def editNote(self, new):
         # Assign the value of this instance's note to whatever is passed as new
         self.note = new
+
 
 # # TODO: need number of companies & contacts per company
 def info(contactList):
@@ -54,10 +58,12 @@ def info(contactList):
 
     print("The total number of contacts: " + str(numberofContacts - 1))
 
+
 def list(contactList):
     """List the infromation of the entire contact list"""
     for contact in contactList:
         contact.listInfo()
+
 
 def loadContacts(contactList):
     """Read info from csv file"""
@@ -107,6 +113,7 @@ def save(contactList):
             file.write(contact.email + ",")
             file.write(contact.note)
 
+
 def main():
     """
     Function Calls
@@ -119,7 +126,7 @@ def main():
 
     while 1:
         cmd = input("Please enter a command: ")
-        print('\n')
+        print("\n")
 
         if cmd == "about":
             about()
