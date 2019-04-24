@@ -17,13 +17,19 @@ It is very agile and a clear solution for various businesses to store their cont
 
 ⚫️ Remove a contact
 
+    ✨ To properly remove a contact: user must enter full name
+
+    ✨ i.e. 'Elon Musk' rather than 'Elon'
+
 ⚫️ Add a contact
 
 ⚫️ Create a note associated with specified contact
 
 ⚫️ Load a default contacts file:
 
-    ✨ From startup: Immediately loads a 'sample.csv' file
+    ✨ From startup: Immediately loads the 'sample.csv' file
+
+    ✨ Ensure this file is within your current working directory
 
 ⚫️ Load a set of commands from a file
 

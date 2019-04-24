@@ -10,7 +10,7 @@ def welcomeMessage():
     print("There are various operations that may be performed: ")
 
     ## TODO: update this wich each function command created
-    print("about, info, list, load, save, exit.")
+    print("about, info, list, remove, load, save, exit.\n")
 
 
 def about():
@@ -63,6 +63,21 @@ def list(contactList):
     """List the infromation of the entire contact list"""
     for contact in contactList:
         contact.listInfo()
+
+
+def remove(contactList, name):
+    """Removes contact by name from contact list"""
+    for i, contact in enumerate(contactList):
+        if contact.name == name:
+            # Delete name from contact list
+            del contactList[i]
+            print("Contact Successfully Removed 🔫 !")
+    # Error check if name dne
+    ## TODO: Fist name on list will throw warning ?
+    if contact.name != name:
+        print("❌ WARNING ❌")
+        print("Contact does not exist.")
+        print("Please check contact list and return with valid name.\n")
 
 
 def loadContacts(contactList):
@@ -137,11 +152,15 @@ def main():
         if cmd == "list":
             list(contactList)
 
+        if cmd == "remove":
+            name = input("Enter the name for which you would like removed: ")
+            remove(contactList, name)
+
         if cmd == "save":
             save(contactList)
 
         if cmd == "exit":
-            print("\nAlways update your contact list !")
+            print("Always update your contact list !")
             print("Goodbye.\n")
             return -1
 
