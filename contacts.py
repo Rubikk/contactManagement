@@ -1,4 +1,4 @@
-## TODO: Command & Note func
+## TODO: Command & Note func -- Error check: break when file name is not found
 
 
 def welcomeMessage():
@@ -10,10 +10,6 @@ def welcomeMessage():
     )
     print("\t\t\t\t\t\t - Linux Torvalds\n")
     print("Welcome to the text-based Contact Application!\n")
-    print("There are various operations that may be performed: ")
-
-    ## TODO: update this wich each function command created
-    print("about, info, list, remove, add, load, save, exit.\n")
 
 
 def about():
@@ -60,6 +56,7 @@ def info(contactList):
         numberofContacts += 1
 
     print("The total number of contacts: " + str(numberofContacts - 1))
+    print('\n')
 
 
 def list(contactList):
@@ -75,54 +72,55 @@ def remove(contactList, name):
             # Delete name from contact list
             del contactList[i]
             print("Contact Successfully Removed 🔫 !")
+            return
     # Error check if name dne
-    ## TODO: Fist name on list will throw warning ?
     if contact.name != name:
-        print("❌ WARNING ❌")
+        print("❌ Error")
         print("Contact does not exist.")
         print("Please check contact list and return with valid name.\n")
 
 
 def add():
     """Add a new contact to the contact list"""
-    print("Do not leave any of the following fields empty. \n")
+    print("⚠️  Warning: ")
+    print("⚠️  Do not leave any of the following fields empty. \n")
 
     # Prompts for each field of contact
     # Error check to ensure each field is non-empty string
     # Save method parsing requires each field to be non-empty
     name = input("Name: ")
     if len(name) <= 0:
-        print("❌ WARNING ❌")
+        print("❌ Error")
         print("Field is empty.\nExiting.")
         return -1
     # Name must not contain numbers
     elif name.isnumeric() == True:
-        print("❌ WARNING ❌")
+        print("❌ Error")
         print("Name must not contain numbers, ONLY letters.")
         print("Exiting.")
         return -1
 
     phone = input("Phone: ")
     if len(phone) <= 0:
-        print("❌ WARNING ❌")
+        print("❌ Error")
         print("Field is empty.\nExiting.")
         return -1
 
     company = input("Company: ")
     if len(company) <= 0:
-        print("❌ WARNING ❌")
+        print("❌ Error")
         print("Field is empty.\nExiting.")
         return -1
 
     email = input("Email: ")
     if len(email) <= 0:
-        print("❌ WARNING ❌")
+        print("❌ Error")
         print("Field is empty.\nExiting.")
         return -1
 
     note = input("Note: ")
     if len(note) <= 0:
-        print("❌ WARNING ❌")
+        print("❌ Error")
         print("Field is empty.\nExiting.")
         return -1
 
@@ -136,7 +134,8 @@ def loadContacts(contactList):
     # List of dictionaries
     data = []
     try:
-        with open("sample.csv", "r") as f:
+        fileIn = input('Please enter a file to be loaded immediately: ')
+        with open(fileIn, "r") as f:
             lines = f.readlines()
 
         for line in lines:
@@ -158,8 +157,10 @@ def loadContacts(contactList):
             contactList.append(contact)
 
     except FileNotFoundError:
-        print('File "{}" not found.'.format("sample.csv"))
-        print("Please enter a valid file name. ")
+        print('\nFile "{}" not found.'.format(fileIn))
+        print("Please enter a valid file name.")
+        print("And ensure the file is within the current working directory.\n")
+        return
 
 
 def save(contactList):
@@ -191,6 +192,10 @@ def main():
     loadContacts(contactList)
 
     while 1:
+        print("There are various operations that may be performed: ")
+
+        ## TODO: update this wich each function command created
+        print("about, info, list, remove, add, load, save, exit.\n")
         cmd = input("Please enter a command: ")
         print("\n")
 
@@ -210,6 +215,9 @@ def main():
         if cmd == "add":
             contact = add()
             contactList.append(contact)
+
+        if cmd == "load":
+            loadContacts(contactList)
 
         if cmd == "save":
             save(contactList)
