@@ -1,3 +1,6 @@
+## TODO: Command & Note func
+
+
 def welcomeMessage():
     """
     Displays initial welcome messages
@@ -10,7 +13,7 @@ def welcomeMessage():
     print("There are various operations that may be performed: ")
 
     ## TODO: update this wich each function command created
-    print("about, info, list, remove, load, save, exit.\n")
+    print("about, info, list, remove, add, load, save, exit.\n")
 
 
 def about():
@@ -78,6 +81,54 @@ def remove(contactList, name):
         print("❌ WARNING ❌")
         print("Contact does not exist.")
         print("Please check contact list and return with valid name.\n")
+
+
+def add():
+    """Add a new contact to the contact list"""
+    print("Do not leave any of the following fields empty. \n")
+
+    # Prompts for each field of contact
+    # Error check to ensure each field is non-empty string
+    # Save method parsing requires each field to be non-empty
+    name = input("Name: ")
+    if len(name) <= 0:
+        print("❌ WARNING ❌")
+        print("Field is empty.\nExiting.")
+        return -1
+    # Name must not contain numbers
+    elif name.isnumeric() == True:
+        print("❌ WARNING ❌")
+        print("Name must not contain numbers, ONLY letters.")
+        print("Exiting.")
+        return -1
+
+    phone = input("Phone: ")
+    if len(phone) <= 0:
+        print("❌ WARNING ❌")
+        print("Field is empty.\nExiting.")
+        return -1
+
+    company = input("Company: ")
+    if len(company) <= 0:
+        print("❌ WARNING ❌")
+        print("Field is empty.\nExiting.")
+        return -1
+
+    email = input("Email: ")
+    if len(email) <= 0:
+        print("❌ WARNING ❌")
+        print("Field is empty.\nExiting.")
+        return -1
+
+    note = input("Note: ")
+    if len(note) <= 0:
+        print("❌ WARNING ❌")
+        print("Field is empty.\nExiting.")
+        return -1
+
+    # New contact instance
+    contact = Contact(name, phone, company, email, note)
+    return contact
 
 
 def loadContacts(contactList):
@@ -155,6 +206,10 @@ def main():
         if cmd == "remove":
             name = input("Enter the name for which you would like removed: ")
             remove(contactList, name)
+
+        if cmd == "add":
+            contact = add()
+            contactList.append(contact)
 
         if cmd == "save":
             save(contactList)
