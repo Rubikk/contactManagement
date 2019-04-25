@@ -38,25 +38,23 @@ class Contact:
         print("Email: ", self.email)
         print("Note: ", self.note)
 
-    def editNote(self, new):
+    def editNote(self, newNote):
         # Assign the value of this instance's note to whatever is passed as new
-        self.note = new
+        self.note = newNote
 
 
-# # TODO: need number of companies & contacts per company
 def info(contactList):
     """
         Information about contact list: number of contacts, companies & contacts per company
     """
     numberofContacts = 0
-    # numberofCompanies = 0
-    # numberofContactsperCompany = 0
 
-    for contacts in contactList:
+    for contact in contactList:
         numberofContacts += 1
+        contact.companyInfo()
 
     print("The total number of contacts: " + str(numberofContacts - 1))
-    print('\n')
+    print("\n")
 
 
 def list(contactList):
@@ -78,6 +76,31 @@ def remove(contactList, name):
         print("❌ Error")
         print("Contact does not exist.")
         print("Please check contact list and return with valid name.\n")
+
+
+def note(contactList, name):
+    """Review Current Note or Edit existing Note"""
+    print("Would you like to view or edit the existing note? ")
+    answer = input("Type 'view' or 'edit': ")
+    # User just wants to view the existing note
+    if answer == "view":
+        # Go through list searching for name
+        for contact in contactList:
+            if name == contact.name:
+                # Print the note associated with name
+                print("\nCurrent Note: ")
+                print(contact.note)
+                print()
+
+    elif answer == "edit":
+        myContact = Contact()
+        newNote = input("Create your new note: ")
+        myContact.editNote(newNote)
+        # Print the new note
+        print("\nNew Note: ")
+        print(myContact.note)
+        print()
+        return
 
 
 def add():
@@ -134,7 +157,7 @@ def loadContacts(contactList):
     # List of dictionaries
     data = []
     try:
-        fileIn = input('Please enter a file to be loaded immediately: ')
+        fileIn = input("Please enter a file to be loaded immediately: ")
         with open(fileIn, "r") as f:
             lines = f.readlines()
 
@@ -195,9 +218,8 @@ def main():
         print("There are various operations that may be performed: ")
 
         ## TODO: update this wich each function command created
-        print("about, info, list, remove, add, load, save, exit.\n")
+        print("about, info, list, remove, note, add, load, save, exit.\n")
         cmd = input("Please enter a command: ")
-        print("\n")
 
         if cmd == "about":
             about()
@@ -211,6 +233,12 @@ def main():
         if cmd == "remove":
             name = input("Enter the name for which you would like removed: ")
             remove(contactList, name)
+
+        if cmd == "note":
+            name = input(
+                "Enter a name for which you would like to view/edit their note: "
+            )
+            note(contactList, name)
 
         if cmd == "add":
             contact = add()
