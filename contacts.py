@@ -45,11 +45,15 @@ def info(contactList):
         Information about contact list: number of contacts, companies & contacts per company
     """
     numberofContacts = 0
+    numberofCompanies = 0
 
     for contact in contactList:
         numberofContacts += 1
+        numberofCompanies += 1
 
     print("The total number of contacts: " + str(numberofContacts - 1))
+
+    print("The total number of companies: " + str(numberofCompanies - 1))
     print("\n")
 
 
@@ -124,7 +128,7 @@ def add(name, phone, company, email, note):
             return -1
     if phone is None:
         phone = input("Phone: ")
-        if len(phone) <= 0:
+        if len(phone) <= 10:
             print("❌ Error")
             print("Field is empty.\nExiting.")
             return -1
@@ -205,7 +209,7 @@ def save(contactList):
 
 
 # TODO: Error check everything & Update ReadME
-# TODO: Think about turtle execution in previous lab ??
+# TODO: Fix commands command
 def commands():
     """Executes a list of commands from a .txt file"""
     # Store words into a new list

@@ -11,7 +11,7 @@ It is very agile and a clear solution for various businesses to store their cont
 
 ⚫️ Number of companies
 
-⚫️ Number of contacts per company
+    ✨ Assumes each contact works at a different company.
 
 ⚫️ List all contacts
 
@@ -27,17 +27,24 @@ It is very agile and a clear solution for various businesses to store their cont
 
     ✨ Will return to main instructions if user leaves a field empty.
 
+    ✨ Furthermore, phone number must be ten digits long.
+    ✨ i.e. 505-321-6920
+
 ⚫️ Create a note associated with specified contact
 
 ⚫️ Load a default contacts file:
 
-    ✨ From startup: Immediately loads the 'sample.csv' file
+    ✨ From startup: Immediately asks to load a file.
 
-    ✨ Ensure this file is within your current working directory
+    ✨ Ensure this file is within your current working directory.
+
+    ✨ However, the file titled 'sample.csv' is a great start to immediately load a simple contact  list.
 
 ⚫️ Load a set of commands from a file
 
 ⚫️ Save contacts to a CSV file
+
+    ✨ Must enter the '.csv' file extension when naming file, however file will be in the comma separated format.
 
 
 | Extra Credit           | Implemented |
