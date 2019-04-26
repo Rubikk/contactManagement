@@ -16,6 +16,7 @@ def about():
 
 class Contact:
     """Stores contact Information"""
+
     def __init__(self, name, phone, company, email, note):
 
         # initial name
@@ -201,6 +202,9 @@ def save(contactList):
             file.write(contact.email + ",")
             file.write(contact.note)
 
+
+# TODO: Error check everything & Update ReadME
+# TODO: Think about turtle execution in previous lab ??
 def commands():
     """Executes a list of commands from a .txt file"""
     try:
@@ -214,13 +218,14 @@ def commands():
             for words in values:
                 if "add" in words:
                     add()
-            print('These are the words: ' + words)
+            print("These are the words: " + words)
 
     except FileNotFoundError:
         print('\nFile "{}" not found.'.format(fileIn))
         print("Please enter a valid file name.")
         print("And ensure the file is within the current working directory.\n")
         return
+
 
 def main():
     """
@@ -234,8 +239,6 @@ def main():
 
     while 1:
         print("There are various operations that may be performed: ")
-
-        ## TODO: update this wich each function command created
         print("about, info, list, remove, note, add, load, save, commands, exit.\n")
         cmd = input("Please enter a command: ")
 
