@@ -1,6 +1,3 @@
-## TODO: Command & Note func -- Error check: break when file name is not found
-
-
 def welcomeMessage():
     """
     Displays initial welcome messages
@@ -9,7 +6,7 @@ def welcomeMessage():
         '\n"Intelligence is the ability to avoid doing work, yet getting the work done."'
     )
     print("\t\t\t\t\t\t - Linux Torvalds\n")
-    print("Welcome to the text-based Contact Application!\n")
+    print("Welcome to my text-based Contact Application!\n")
 
 
 def about():
@@ -19,7 +16,6 @@ def about():
 
 class Contact:
     """Stores contact Information"""
-
     def __init__(self, name, phone, company, email, note):
 
         # initial name
@@ -93,14 +89,17 @@ def note(contactList, name):
                 print()
 
     elif answer == "edit":
-        myContact = Contact()
-        newNote = input("Create your new note: ")
-        myContact.editNote(newNote)
+        for contact in contactList:
+            phone = contact.phone
+            company = contact.company
+            email = contact.email
+        new = input("Create your new note: ")
+        myContact = Contact(name, phone, company, email, note)
+        myContact.editNote(new)
         # Print the new note
         print("\nNew Note: ")
-        print(myContact.note)
+        print(new)
         print()
-        return
 
 
 def add():
@@ -203,6 +202,22 @@ def save(contactList):
             file.write(contact.email + ",")
             file.write(contact.note)
 
+def commands():
+    try:
+        fileIn = input("Which file of commands would you like to execute? ")
+        with open(fileIn, "r") as f:
+            lines = f.readlines()
+
+        for line in lines:
+            values = line.split(",")
+
+        print(values)
+
+    except FileNotFoundError:
+        print('\nFile "{}" not found.'.format(fileIn))
+        print("Please enter a valid file name.")
+        print("And ensure the file is within the current working directory.\n")
+        return
 
 def main():
     """
@@ -218,7 +233,7 @@ def main():
         print("There are various operations that may be performed: ")
 
         ## TODO: update this wich each function command created
-        print("about, info, list, remove, note, add, load, save, exit.\n")
+        print("about, info, list, remove, note, add, load, save, commands, exit.\n")
         cmd = input("Please enter a command: ")
 
         if cmd == "about":
@@ -249,6 +264,10 @@ def main():
 
         if cmd == "save":
             save(contactList)
+
+        if cmd == "commands":
+            print("⚠️  Warning: Please ensure file is in current directory. ")
+            commands()
 
         if cmd == "exit":
             print("Always update your contact list !")
