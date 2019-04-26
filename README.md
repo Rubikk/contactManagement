@@ -23,6 +23,10 @@ It is very agile and a clear solution for various businesses to store their cont
 
 ⚫️ Add a contact
 
+    ✨ To properly add a contact: user must enter something for each field.
+
+    ✨ Will return to main instructions if user leaves a field empty.
+
 ⚫️ Create a note associated with specified contact
 
 ⚫️ Load a default contacts file:
@@ -35,9 +39,17 @@ It is very agile and a clear solution for various businesses to store their cont
 
 ⚫️ Save contacts to a CSV file
 
+
+| Extra Credit           | Implemented |
+|------------------------|-------------|
+| Random Welcome & Goodbye |         |
+| Validate User Input | |
+| Import Contacts from a CSV file | |
+| Use Object Oriented Programming | |
+
 # Last Update:
 
-04/23/19
+04/26/19
 
 # Code Style
 

@@ -218,7 +218,6 @@ def commands():
                 instructions.append(line)
             # when you see add in the list, expect the following
             for i in instructions:
-                print(i)
                 if i == "add":
                     name = instructions[1]
                     phone = instructions[2]
@@ -226,8 +225,11 @@ def commands():
                     email = instructions[4]
                     note = instructions[5]
                     add(name, phone, company, email, note)
-                if i == "list":
-                    list(contactList)
+                # if i == "list":
+                #     list(contactList)
+                print(instructions[1])
+                if i == "exit":
+                    exit()
     except FileNotFoundError:
         print('\nFile "{}" not found.'.format(fileIn))
         print("Please enter a valid file name.")
