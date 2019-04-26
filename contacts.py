@@ -47,7 +47,6 @@ def info(contactList):
 
     for contact in contactList:
         numberofContacts += 1
-        contact.companyInfo()
 
     print("The total number of contacts: " + str(numberofContacts - 1))
     print("\n")
@@ -203,6 +202,7 @@ def save(contactList):
             file.write(contact.note)
 
 def commands():
+    """Executes a list of commands from a .txt file"""
     try:
         fileIn = input("Which file of commands would you like to execute? ")
         with open(fileIn, "r") as f:
@@ -211,7 +211,10 @@ def commands():
         for line in lines:
             values = line.split(",")
 
-        print(values)
+            for words in values:
+                if "add" in words:
+                    add()
+            print('These are the words: ' + words)
 
     except FileNotFoundError:
         print('\nFile "{}" not found.'.format(fileIn))

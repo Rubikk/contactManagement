@@ -1,0 +1,23 @@
+add
+Joe Black
+555-2764
+Uber
+JoeBlack@gmail.com
+Best Uber in town!
+list
+info
+remove
+Tim Cook
+about
+note
+Elon Musk
+view
+note
+Elon Musk
+edit
+To the galaxy and beyond!
+load
+contacts.csv
+save
+newFileContact.csv
+exit
