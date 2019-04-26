@@ -102,7 +102,7 @@ def note(contactList, name):
         print()
 
 
-def add():
+def add(name, phone, company, email, note):
     """Add a new contact to the contact list"""
     print("⚠️  Warning: ")
     print("⚠️  Do not leave any of the following fields empty. \n")
@@ -110,41 +110,42 @@ def add():
     # Prompts for each field of contact
     # Error check to ensure each field is non-empty string
     # Save method parsing requires each field to be non-empty
-    name = input("Name: ")
-    if len(name) <= 0:
-        print("❌ Error")
-        print("Field is empty.\nExiting.")
-        return -1
-    # Name must not contain numbers
-    elif name.isnumeric() == True:
-        print("❌ Error")
-        print("Name must not contain numbers, ONLY letters.")
-        print("Exiting.")
-        return -1
-
-    phone = input("Phone: ")
-    if len(phone) <= 0:
-        print("❌ Error")
-        print("Field is empty.\nExiting.")
-        return -1
-
-    company = input("Company: ")
-    if len(company) <= 0:
-        print("❌ Error")
-        print("Field is empty.\nExiting.")
-        return -1
-
-    email = input("Email: ")
-    if len(email) <= 0:
-        print("❌ Error")
-        print("Field is empty.\nExiting.")
-        return -1
-
-    note = input("Note: ")
-    if len(note) <= 0:
-        print("❌ Error")
-        print("Field is empty.\nExiting.")
-        return -1
+    if name is None:
+        name = input("Name: ")
+        if len(name) <= 0:
+            print("❌ Error")
+            print("Field is empty.\nExiting.")
+            return -1
+        # Name must not contain numbers
+        elif name.isnumeric() == True:
+            print("❌ Error")
+            print("Name must not contain numbers, ONLY letters.")
+            print("Exiting.")
+            return -1
+    if phone is None:
+        phone = input("Phone: ")
+        if len(phone) <= 0:
+            print("❌ Error")
+            print("Field is empty.\nExiting.")
+            return -1
+    if company is None:
+        company = input("Company: ")
+        if len(company) <= 0:
+            print("❌ Error")
+            print("Field is empty.\nExiting.")
+            return -1
+    if email is None:
+        email = input("Email: ")
+        if len(email) <= 0:
+            print("❌ Error")
+            print("Field is empty.\nExiting.")
+            return -1
+    if note is None:
+        note = input("Note: ")
+        if len(note) <= 0:
+            print("❌ Error")
+            print("Field is empty.\nExiting.")
+            return -1
 
     # New contact instance
     contact = Contact(name, phone, company, email, note)
@@ -207,19 +208,26 @@ def save(contactList):
 # TODO: Think about turtle execution in previous lab ??
 def commands():
     """Executes a list of commands from a .txt file"""
+    # Store words into a new list
+    instructions = []
     try:
         fileIn = input("Which file of commands would you like to execute? ")
         with open(fileIn, "r") as f:
-            lines = f.readlines()
-
-        for line in lines:
-            values = line.split(",")
-
-            for words in values:
-                if "add" in words:
-                    add()
-            print("These are the words: " + words)
-
+            for line in f:
+                line = line.strip()
+                instructions.append(line)
+            # when you see add in the list, expect the following
+            for i in instructions:
+                print(i)
+                if i == "add":
+                    name = instructions[1]
+                    phone = instructions[2]
+                    company = instructions[3]
+                    email = instructions[4]
+                    note = instructions[5]
+                    add(name, phone, company, email, note)
+                if i == "list":
+                    list(contactList)
     except FileNotFoundError:
         print('\nFile "{}" not found.'.format(fileIn))
         print("Please enter a valid file name.")
@@ -262,7 +270,7 @@ def main():
             note(contactList, name)
 
         if cmd == "add":
-            contact = add()
+            contact = add(name=None, phone=None, company=None, email=None, note=None)
             contactList.append(contact)
 
         if cmd == "load":
