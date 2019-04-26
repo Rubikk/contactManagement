@@ -42,10 +42,10 @@ It is very agile and a clear solution for various businesses to store their cont
 
 | Extra Credit           | Implemented |
 |------------------------|-------------|
-| Random Welcome & Goodbye |         |
-| Validate User Input | |
-| Import Contacts from a CSV file | |
-| Use Object Oriented Programming | |
+| Random Welcome & Goodbye |     ✔    |
+| Validate User Input | ✔ |
+| Import Contacts from a CSV file | ✔ |
+| Use Object Oriented Programming | ✔ |
 
 # Last Update:
 
