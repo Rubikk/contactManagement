@@ -1,3 +1,5 @@
+## TODO: Error check note
+
 def welcomeMessage():
     """
     Displays initial welcome messages
