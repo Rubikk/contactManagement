@@ -10,7 +10,7 @@ It is very agile and a clear solution for various businesses to store their cont
 Clone the repository:
 
 ```bash
-
+$ git clone https://github.com/Rubikk/contactManagement.git
 ```
 Run in Terminal:
 
@@ -34,13 +34,12 @@ $ python3 contacts.py
 
 # Example Screenshots
 
-<div align="center">
-    <img src="screenshots/welcome_about_info.png" width="400px"</img>
-    <img src="screenshots/remove_add.png" width="400px"</img>
-    <img src="screenshots/load.png" width="400px"</img>
-    <img src="screenshots/save_exit.png" width="400px"</img>
-    <img src="screenshots/list.png" width="400px"</img>
-</div>
+<img src="screenshots/welcome_about_info.png" height="400px"/>
+<img src="screenshots/list.png" height="400px"/>
+<img src="screenshots/add_remove.png" height="400px"/>
+<img src="screenshots/note.png" height="400px"/>
+<img src="screenshots/load_save.png" height="400px"/>
+<img src="screenshots/commands.png" height="400px"/>
 
 # Command Feature Specifics
 
