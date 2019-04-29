@@ -35,10 +35,10 @@ $ python3 contacts.py
 
 <div align="center">
     <img src="screenshots/welcome_about_info.png" width="400px"</img>
-    <img src="screenshots/list.png" width="400px"</img>
     <img src="screenshots/remove_add.png" width="400px"</img>
     <img src="screenshots/load.png" width="400px"</img>
     <img src="screenshots/save_exit.png" width="400px"</img>
+    <img src="screenshots/list.png" width="400px"</img>
 </div>
 
 # Command Feature Specifics
