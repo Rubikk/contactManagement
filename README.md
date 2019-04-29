@@ -30,6 +30,7 @@ $ python3 contacts.py
 | add | Add a contact. |
 | load | Load a default contacts file when the application starts, Warns user if file is invalid. |
 | save | Allows user to save current contact list to a comma separated file (CSV). |
+| commands | Load a set of commands from a file and execute them. |
 
 # Example Screenshots
 
@@ -64,7 +65,8 @@ $ python3 contacts.py
     ✨ Will return to main instructions if user leaves a field empty.
 
     ✨ Furthermore, phone number must be ten digits long.
-    ✨ i.e. 505-321-6920
+
+        ✨ i.e. 505-321-6920
 
 ⚫️ Create a note associated with specified contact
 
@@ -77,6 +79,12 @@ $ python3 contacts.py
     ✨ However, the file titled 'sample.csv' is a great start to immediately load a simple contact list.
 
 ⚫️ Load a set of commands from a file
+
+    ✨ MUST follow the example file: 'listofCommands.txt'.
+
+    ✨ One instruction per line.
+
+    ✨ Just as the normal program executes, each input is required immediately after the keyword is seen.
 
 ⚫️ Save contacts to a CSV file
 

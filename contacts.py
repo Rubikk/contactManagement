@@ -1,6 +1,3 @@
-## TODO: Error check note
-
-
 def welcomeMessage():
     """
     Displays initial welcome messages
@@ -84,6 +81,9 @@ def remove(contactList, name):
 
 def noteText(contactList, name, answer, new):
     """Review Current Note or Edit existing Note"""
+    if name is None:
+        name = input(
+            "Enter a name for which you would like to view/edit their note: ")
     if answer is None:
         print("Would you like to view or edit the existing note? ")
         answer = input("Type 'view' or 'edit': ")
@@ -96,6 +96,11 @@ def noteText(contactList, name, answer, new):
                 print("\nCurrent Note: ")
                 print(contact.note)
                 print()
+                return
+        # Name does not exist
+        print("❌ Error")
+        print("Contact does not exist.")
+        print("Please check contact list and return with valid name.\n")
 
     elif answer == "edit":
         for contact in contactList:
@@ -107,6 +112,11 @@ def noteText(contactList, name, answer, new):
                 print("\nNew Note: ")
                 print(new)
                 print()
+                return
+        # Name does not exist
+        print("❌ Error")
+        print("Contact does not exist.")
+        print("Please check contact list and return with valid name.\n")
 
 
 def add(name, phone, company, email, note):
@@ -223,7 +233,7 @@ def commands(contactList):
             for line in f:
                 line = line.strip()
                 instructions.append(line)
-            # when you see add in the list, expect the following
+            # When you see add in the list, expect the following
             for index, i in enumerate(instructions):
                 if i == "add":
                     name = instructions[index + 1]
@@ -234,6 +244,7 @@ def commands(contactList):
                     newContact = add(name, phone, company, email, note)
 
                     contactList.append(newContact)
+
                 if i == "list":
                     list(contactList)
 
@@ -299,13 +310,11 @@ def main():
             remove(contactList, name=None)
 
         if cmd == "note":
-            name = input(
-                "Enter a name for which you would like to view/edit their note: "
-            )
-            noteText(contactList, name, answer=None, new=None)
+            noteText(contactList, name=None, answer=None, new=None)
 
         if cmd == "add":
-            contact = add(name=None, phone=None, company=None, email=None, note=None)
+            contact = add(name=None, phone=None,
+                          company=None, email=None, note=None)
             contactList.append(contact)
 
         if cmd == "load":
