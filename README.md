@@ -12,6 +12,7 @@ Clone the repository:
 ```bash
 
 ```
+Run in Terminal:
 
 ```bash
 $ python3 contacts.py
@@ -21,22 +22,24 @@ $ python3 contacts.py
 
 | Command                | Description |
 |------------------------|-------------|
-| about | Print developer information |
-| info | Print number of contacts, and companies |
-| list | List all contacts |
-| remove | Report contacts updated, Warns user if trying to remove contact that does not exist |
-| note | Allows user to edit a note associated with a specified contact, or to view the current note |
-| add | Add a contact |
-| load | Load a default contacts file when the application starts, Warns user if file is invalid |
-| save | Allows user to save current contact list to a comma separated file (CSV) |
+| about | Print developer information. |
+| info | Print number of contacts, and companies. |
+| list | List all contacts. |
+| remove | Report contacts updated, Warns user if trying to remove contact that does not exist. |
+| note | Allows user to edit a note associated with a specified contact, or to view the current note. |
+| add | Add a contact. |
+| load | Load a default contacts file when the application starts, Warns user if file is invalid. |
+| save | Allows user to save current contact list to a comma separated file (CSV). |
 
 # Example Screenshots
 
 <div align="center">
     <img src="screenshots/welcome_about_info.png" width="400px"</img>
+    <img src="screenshots/list.png" width="400px"</img>
+    <img src="screenshots/remove_add.png" width="400px"</img>
+    <img src="screenshots/load.png" width="400px"</img>
+    <img src="screenshots/save_exit.png" width="400px"</img>
 </div>
-
-
 
 # Command Feature Specifics
 
@@ -89,7 +92,7 @@ $ python3 contacts.py
 
 # Last Update:
 
-04/26/19
+04/29/19
 
 # Code Style
 
