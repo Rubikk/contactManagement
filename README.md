@@ -33,7 +33,7 @@ $ python3 contacts.py
 # Example Screenshots
 
 <div align="center">
-    <img src="screenshots/welcome_about_info" width="400px"</img>
+    <img src="screenshots/welcome_about_info.png" width="400px"</img>
 </div>
 
 
