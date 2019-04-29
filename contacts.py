@@ -1,5 +1,6 @@
 ## TODO: Error check note
 
+
 def welcomeMessage():
     """
     Displays initial welcome messages
@@ -67,6 +68,8 @@ def list(contactList):
 
 def remove(contactList, name):
     """Removes contact by name from contact list"""
+    if name is None:
+        name = input("Enter the name for which you would like removed: ")
     for i, contact in enumerate(contactList):
         if contact.name == name:
             # Delete name from contact list
@@ -74,17 +77,17 @@ def remove(contactList, name):
             print("Contact Successfully Removed 🔫 !")
             return
     # Error check if name dne
-    if contact.name != name:
-        print("❌ Error")
-        print("Contact does not exist.")
-        print("Please check contact list and return with valid name.\n")
+    print("❌ Error")
+    print("Contact does not exist.")
+    print("Please check contact list and return with valid name.\n")
 
 
-def note(contactList, name):
+def noteText(contactList, name, answer, new):
     """Review Current Note or Edit existing Note"""
-    print("Would you like to view or edit the existing note? ")
-    answer = input("Type 'view' or 'edit': ")
-    # User just wants to view the existing note
+    if answer is None:
+        print("Would you like to view or edit the existing note? ")
+        answer = input("Type 'view' or 'edit': ")
+        # User just wants to view the existing note
     if answer == "view":
         # Go through list searching for name
         for contact in contactList:
@@ -96,16 +99,14 @@ def note(contactList, name):
 
     elif answer == "edit":
         for contact in contactList:
-            phone = contact.phone
-            company = contact.company
-            email = contact.email
-        new = input("Create your new note: ")
-        myContact = Contact(name, phone, company, email, note)
-        myContact.editNote(new)
-        # Print the new note
-        print("\nNew Note: ")
-        print(new)
-        print()
+            if name == contact.name:
+                if new is None:
+                    new = input("Create your new note: ")
+                contact.editNote(new)
+                # Print the new note
+                print("\nNew Note: ")
+                print(new)
+                print()
 
 
 def add(name, phone, company, email, note):
@@ -158,32 +159,33 @@ def add(name, phone, company, email, note):
     return contact
 
 
-def loadContacts(contactList):
+def loadContacts(contactList, fileIn):
     """Read info from csv file"""
     # List of dictionaries
     data = []
     try:
-        fileIn = input("Please enter a file to be loaded immediately: ")
-        with open(fileIn, "r") as f:
-            lines = f.readlines()
+        if fileIn is None:
+            fileIn = input("Please enter a file to be loaded immediately: ")
+            with open(fileIn, "r") as f:
+                lines = f.readlines()
 
-        for line in lines:
-            values = line.split(",")
+            for line in lines:
+                values = line.split(",")
 
-            # Creates an empty dictionary
-            row = dict()
+                # Creates an empty dictionary
+                row = dict()
 
-            name = row["Name"] = values[0]
-            phone = row["Phone"] = values[1]
-            company = row["Company"] = values[2]
-            email = row["Email"] = values[3]
-            note = row["Note"] = values[4]
-            data.append(row)
+                name = row["Name"] = values[0]
+                phone = row["Phone"] = values[1]
+                company = row["Company"] = values[2]
+                email = row["Email"] = values[3]
+                note = row["Note"] = values[4]
+                data.append(row)
 
-            # new instance of contact
-            contact = Contact(name, phone, company, email, note)
-            # store as list
-            contactList.append(contact)
+                # new instance of contact
+                contact = Contact(name, phone, company, email, note)
+                # store as list
+                contactList.append(contact)
 
     except FileNotFoundError:
         print('\nFile "{}" not found.'.format(fileIn))
@@ -192,16 +194,17 @@ def loadContacts(contactList):
         return
 
 
-def save(contactList):
+def save(contactList, saveFile):
     """Saves contactList to a file in CSV format"""
 
     print(
         "Note: This file will be saved in comma separated format, please mark your file as a '.csv' "
     )
-    savefile = input(
-        "Please enter the filename in which you would like to save your file: "
-    )
-    with open(savefile, "w") as file:
+    if saveFile is None:
+        saveFile = input(
+            "Please enter the filename in which you would like to save your file: "
+        )
+    with open(saveFile, "w") as file:
         for contact in contactList:
             file.write(contact.name + ",")
             file.write(contact.phone + ",")
@@ -210,9 +213,7 @@ def save(contactList):
             file.write(contact.note)
 
 
-# TODO: Error check everything & Update ReadME
-# TODO: Fix commands command
-def commands():
+def commands(contactList):
     """Executes a list of commands from a .txt file"""
     # Store words into a new list
     instructions = []
@@ -223,19 +224,46 @@ def commands():
                 line = line.strip()
                 instructions.append(line)
             # when you see add in the list, expect the following
-            for i in instructions:
+            for index, i in enumerate(instructions):
                 if i == "add":
-                    name = instructions[1]
-                    phone = instructions[2]
-                    company = instructions[3]
-                    email = instructions[4]
-                    note = instructions[5]
-                    add(name, phone, company, email, note)
-                # if i == "list":
-                #     list(contactList)
-                print(instructions[1])
+                    name = instructions[index + 1]
+                    phone = instructions[index + 2]
+                    company = instructions[index + 3]
+                    email = instructions[index + 4]
+                    note = instructions[index + 5]
+                    newContact = add(name, phone, company, email, note)
+
+                    contactList.append(newContact)
+                if i == "list":
+                    list(contactList)
+
+                if i == "info":
+                    info(contactList)
+
+                if i == "remove":
+                    name = instructions[index + 1]
+                    remove(contactList, name)
+
+                if i == "about":
+                    about()
+
+                if i == "note":
+                    answer = instructions[index + 2]
+                    name = instructions[index + 1]
+                    new = instructions[index + 3]
+                    noteText(contactList, name, answer, new)
+
+                if i == "load":
+                    fileIn = instructions[index + 1]
+                    loadContacts(contactList, fileIn)
+
+                if i == "save":
+                    saveFile = instructions[index + 1]
+                    save(contactList, saveFile)
+
                 if i == "exit":
                     exit()
+
     except FileNotFoundError:
         print('\nFile "{}" not found.'.format(fileIn))
         print("Please enter a valid file name.")
@@ -251,7 +279,7 @@ def main():
     welcomeMessage()
     contactList = []
     # Load a default contacts file when app starts
-    loadContacts(contactList)
+    loadContacts(contactList, fileIn=None)
 
     while 1:
         print("There are various operations that may be performed: ")
@@ -268,28 +296,27 @@ def main():
             list(contactList)
 
         if cmd == "remove":
-            name = input("Enter the name for which you would like removed: ")
-            remove(contactList, name)
+            remove(contactList, name=None)
 
         if cmd == "note":
             name = input(
                 "Enter a name for which you would like to view/edit their note: "
             )
-            note(contactList, name)
+            noteText(contactList, name, answer=None, new=None)
 
         if cmd == "add":
             contact = add(name=None, phone=None, company=None, email=None, note=None)
             contactList.append(contact)
 
         if cmd == "load":
-            loadContacts(contactList)
+            loadContacts(contactList, fileIn=None)
 
         if cmd == "save":
-            save(contactList)
+            save(contactList, saveFile=None)
 
         if cmd == "commands":
             print("⚠️  Warning: Please ensure file is in current directory. ")
-            commands()
+            commands(contactList)
 
         if cmd == "exit":
             print("Always update your contact list !")
