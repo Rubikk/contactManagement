@@ -5,7 +5,40 @@
 This is a text-based business contact application.
 It is very agile and a clear solution for various businesses to store their contact lists.
 
-# Features
+# Quickstart
+
+Clone the repository:
+
+```bash
+
+```
+
+```bash
+$ python3 contacts.py
+```
+
+# Commands & Description
+
+| Command                | Description |
+|------------------------|-------------|
+| about | Print developer information |
+| info | Print number of contacts, and companies |
+| list | List all contacts |
+| remove | Report contacts updated, Warns user if trying to remove contact that does not exist |
+| note | Allows user to edit a note associated with a specified contact, or to view the current note |
+| add | Add a contact |
+| load | Load a default contacts file when the application starts, Warns user if file is invalid |
+| save | Allows user to save current contact list to a comma separated file (CSV) |
+
+# Example Screenshots
+
+<div align="center">
+    <img src="screenshots/welcome_about_info" width="400px"</img>
+</div>
+
+
+
+# Command Feature Specifics
 
 ⚫️ Total number of contacts
 
@@ -38,7 +71,7 @@ It is very agile and a clear solution for various businesses to store their cont
 
     ✨ Ensure this file is within your current working directory.
 
-    ✨ However, the file titled 'sample.csv' is a great start to immediately load a simple contact  list.
+    ✨ However, the file titled 'sample.csv' is a great start to immediately load a simple contact list.
 
 ⚫️ Load a set of commands from a file
 
