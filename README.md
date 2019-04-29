@@ -25,7 +25,7 @@ $ python3 contacts.py
 | about | Print developer information. |
 | info | Print number of contacts, and companies. |
 | list | List all contacts. |
-| remove | Report contacts updated, Warns user if trying to remove contact that does not exist. |
+| remove | Remove a contact. Report contacts updated, Warns user if trying to remove contact that does not exist. |
 | note | Allows user to edit a note associated with a specified contact, or to view the current note. |
 | add | Add a contact. |
 | load | Load a default contacts file when the application starts, Warns user if file is invalid. |
